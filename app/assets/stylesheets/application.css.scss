@@ -1,0 +1,40 @@
+//= require_tree .
+//= require_self
+
+@import 'semantic-ui';
+
+html, body {
+  overflow: hidden;
+}
+
+html, body, .main-container, .channel-container {
+  height: 100%;
+}
+
+.main-container {
+  overflow: hidden;
+}
+
+.main-container {
+  display: flex;
+}
+
+.channel-list-container {
+  height: 100%;
+}
+
+.channel-container {
+  margin-left: 15rem;
+  padding-top: 2rem;
+  padding-bottom: 3rem;
+  overflow: scroll;
+  width: 100%;
+  height: 100%;
+}
+
+.channel-menu {
+  // margin-left: 15rem !important;
+  left: 15rem !important;
+  right: 0 !important;
+  width: auto !important;
+}

@@ -12,7 +12,14 @@ gem 'jbuilder', '~> 2.5'
 gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
 
 group :development, :test do
-  gem 'byebug', platform: :mri
+  gem 'pry-byebug', platform: :mri
+  gem 'pry-rails'
+  gem 'pry-doc'
+  gem 'pry-stack_explorer'
+  gem "rspec-rails"
+  gem "shoulda-matchers"
+  gem "factory_girl_rails"
+  gem "capybara"
 end
 
 group :development do

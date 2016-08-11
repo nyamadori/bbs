@@ -1,26 +1,34 @@
 class MessagesController < APIController
+  before_action set_message, except: [:index, :create]
+
   def index
-    # TODO
-    # メッセージ一覧取得 (JSON)
     render json: Message.all
   end
 
   def show
-    render json: Message.find(params[:id])
+    render json: @message
   end
 
   def create
-    # TODO
-    # メッセージ投稿
+    @message = Message.new(message_params)
+    @message.save
   end
 
   def destroy
-    # TODO
-    # メッセージ削除
+    @message.destroy
   end
 
   def update
-    # TODO
-    # メッセージ編集
+    @messag.update(message_params)
+  end
+
+  private
+
+  def message_params
+    params.require(:message).permit(:body)
+  end
+
+  def set_message
+    @message = Message.find(params[:id])
   end
 end

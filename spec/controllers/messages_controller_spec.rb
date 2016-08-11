@@ -34,13 +34,13 @@ RSpec.describe MessagesController, type: :controller do
       let(:message_params) { attributes_for(:message).stringify_keys }
 
       it 'returns new message' do
-        post :create, message: message_params
-        expect(assigns(:message).attributes.slice('body')).to eq(message_params)
+        post :create, params: { message: message_params }
+        expect(assigns(:message).attributes).to include(message_params)
       end
 
       it 'saves the new message in the database' do
         expect {
-          post :create, message: message_params
+          post :create, params: { message: message_params }
         }.to change(Message, :count).by(1)
       end
     end
@@ -48,19 +48,63 @@ RSpec.describe MessagesController, type: :controller do
     context 'with invalid attributes' do
       let(:message_params) { attributes_for(:invalid_message) }
 
-      it 'does not save the new message in the database' do
-        expect {
-          post :create, message: message_params
-        }.not_to change(Message, :count)
-      end
-
       it 'raises error' do
         expect {
-          post :create, message: message_params
-        }.to raise_error
+          post :create, params: { message: message_params }
+        }.to raise_error(ActiveRecord::RecordInvalid)
       end
     end
   end
-  describe '#destroy'
-  describe '#update'
+
+  describe '#update' do
+    let!(:message) { create(:message) }
+
+    context 'with valid attributes' do
+      it 'updates the message' do
+        expect {
+          patch :update, params: {
+            id: message.id, message: { body: 'new body' }
+          }
+        }.to change { message.reload.body }.to('new body')
+      end
+    end
+
+    context 'with invalid attributes' do
+      it 'raises RecordInvalid error' do
+        expect {
+          patch :update, params: {
+            id: message.id, message: { body: '' }
+          }
+        }.to raise_error(ActiveRecord::RecordInvalid)
+      end
+    end
+
+    context 'with no existing message' do
+      it 'raises RecordNotFound error' do
+        expect {
+          patch :update, params: { id: -1, body: 'hoge' }
+        }.to raise_error(ActiveRecord::RecordNotFound)
+      end
+    end
+  end
+
+  describe '#destroy' do
+    let!(:message) { create(:message) }
+
+    context 'with the exisiting message' do
+      it 'deletes the message in the database' do
+        expect {
+          delete :destroy, params: { id: message.id }
+        }.to change(Message, :count).by(-1)
+      end
+    end
+
+    context 'with no exisiting message' do
+      it 'raises RecordNotFound error' do
+        expect {
+          delete :destroy, params: { id: -1 }
+        }.to raise_error(ActiveRecord::RecordNotFound)
+      end
+    end
+  end
 end

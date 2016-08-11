@@ -12,7 +12,7 @@ class MessagesController < ApplicationController
 
   def create
     @message = Message.new(message_params)
-    @message.save
+    @message.save!
   end
 
   def destroy
@@ -20,7 +20,7 @@ class MessagesController < ApplicationController
   end
 
   def update
-    @messag.update(message_params)
+    @message.update!(message_params)
   end
 
   private

@@ -1,8 +1,9 @@
-class MessagesController < APIController
-  before_action set_message, except: [:index, :create]
+class MessagesController < ApplicationController
+  before_action :set_message, except: [:index, :create]
 
   def index
-    render json: Message.all
+    @messages = Message.all
+    render json: @messages
   end
 
   def show

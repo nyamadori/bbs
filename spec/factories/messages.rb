@@ -1,5 +1,9 @@
 FactoryGirl.define do
   factory :message do
-    body "MyText"
+    body 'MyText'
+
+    factory :invalid_message do
+      body ''
+    end
   end
 end

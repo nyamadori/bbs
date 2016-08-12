@@ -1,3 +1,3 @@
 class Message < ApplicationRecord
-  # TODO
+  validates :body, presence: true
 end

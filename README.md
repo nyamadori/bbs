@@ -21,6 +21,7 @@ $ ./bin/rails db:create db:migrate
 
 ```
 $ cd bbs
-$ ./bin/rails s # run API server
+$ ./bin/rails s              # run API server
 $ cd frontend && npm run dev # run frontend server
+$ open http://localhost:8080
 ```

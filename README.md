@@ -1,24 +1,27 @@
-# README
+bbs
+====
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[![CircleCI](https://circleci.com/gh/nyamadori/bbs.svg?style=svg)](https://circleci.com/gh/nyamadori/bbs)
 
-Things you may want to cover:
+A chat application like Slack.
 
-* Ruby version
+Development
+-----
 
-* System dependencies
+### Setup
 
-* Configuration
+```
+$ cd bbs
+$ bundle install
+$ cd frontend && npm install
+$ ./bin/rails db:create db:migrate
+```
 
-* Database creation
+### Run
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```
+$ cd bbs
+$ ./bin/rails s              # run API server
+$ cd frontend && npm run dev # run frontend server
+$ open http://localhost:8080
+```

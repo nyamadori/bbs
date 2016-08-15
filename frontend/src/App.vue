@@ -1,64 +1,110 @@
 <template>
-  <div id="app">
-    <img class="logo" src="./assets/logo.png">
-    <hello></hello>
-    <p>
-      Welcome to your Vue.js app!
-    </p>
-    <p>
-      To get a better understanding of how this boilerplate works, check out
-      <a href="http://vuejs-templates.github.io/webpack" target="_blank">its documentation</a>.
-      It is also recommended to go through the docs for
-      <a href="http://webpack.github.io/" target="_blank">Webpack</a> and
-      <a href="http://vuejs.github.io/vue-loader/" target="_blank">vue-loader</a>.
-      If you have any issues with the setup, please file an issue at this boilerplate's
-      <a href="https://github.com/vuejs-templates/webpack" target="_blank">repository</a>.
-    </p>
-    <p>
-      You may also want to checkout
-      <a href="https://github.com/vuejs/vue-router/" target="_blank">vue-router</a> for routing and
-      <a href="https://github.com/vuejs/vuex/" target="_blank">vuex</a> for state management.
-    </p>
+  <div class="main-container">
+    <aside class="ui vertical inverted sidebar visible menu">
+      <section class="item">
+        <h1 class="header">Channels</h1>
+        <div class="menu">
+          <a class="item">dev</a>
+          <a class="active item">general</a>
+          <a class="item">icpc</a>
+          <a class="item">general</a>
+          <a class="item">icpc</a>
+          <a class="item">general</a>
+          <a class="item">icpc</a>
+          <a class="item">general</a>
+          <a class="item">icpc</a>
+          <a class="item">general</a>
+          <a class="item">icpc</a>
+          <a class="item">general</a>
+          <a class="item">icpc</a>
+          <a class="item">general</a>
+          <a class="item">icpc</a>
+          <a class="item">general</a>
+          <a class="item">icpc</a>
+          <a class="item">general</a>
+          <a class="item">icpc</a>
+          <a class="item">general</a>
+          <a class="item">icpc</a>
+        </div>
+      </section>
+
+      <section class="item">
+        <h1 class="header">Direct Messages</h1>
+        <div class="menu">
+          <a class="item">slackbot</a>
+          <a class="item">nyamadori</a>
+          <a class="item">awaryu</a>
+        </div>
+      </section>
+    </aside>
+
+    <article class="channel-container">
+      <div class="ui top fixed borderless menu channel-menu">
+        <div class="header item">#general</div>
+      </div>
+
+      <div class="ui basic segment">
+        <timeline></timeline>
+
+        <div class="ui bottom fixed borderless menu channel-menu">
+          <div class="item" style="width: 100%">
+            <div class="ui input">
+              <input type="text">
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
   </div>
+
 </template>
 
 <script>
 import Hello from './components/Hello'
+import Timeline from './components/Timeline'
 
 export default {
   components: {
-    Hello
+    Hello, Timeline
   }
 }
 </script>
 
 <style>
-html {
+html, body {
+  overflow: hidden;
+}
+
+html, body, .main-container, .channel-container {
   height: 100%;
 }
 
-body {
+.main-container {
+  overflow: hidden;
+}
+
+.main-container {
   display: flex;
-  align-items: center;
-  justify-content: center;
+}
+
+.channel-list-container {
   height: 100%;
 }
 
-#app {
-  color: #2c3e50;
-  margin-top: -100px;
-  max-width: 600px;
-  font-family: Source Sans Pro, Helvetica, sans-serif;
-  text-align: center;
+.channel-container {
+  margin-left: 15rem;
+  padding-top: 2rem;
+  padding-bottom: 3rem;
+  overflow: scroll;
+  width: 100%;
+  height: 100%;
 }
 
-#app a {
-  color: #42b983;
-  text-decoration: none;
+.channel-menu {
+  // margin-left: 15rem !important;
+  left: 15rem !important;
+  right: 0 !important;
+  width: auto !important;
 }
 
-.logo {
-  width: 100px;
-  height: 100px
-}
 </style>
